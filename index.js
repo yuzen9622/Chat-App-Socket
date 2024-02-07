@@ -1,6 +1,6 @@
 const { Server } = require("socket.io");
 
-const io = new Server({ cors: "http://localhost:3000" });
+const io = new Server({ cors: "https://yuzen9622.github.io" });
 let onlineUsers = []
 io.on("connection", (socket) => {
 
