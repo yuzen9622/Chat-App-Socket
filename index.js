@@ -15,12 +15,7 @@ io.on("connection", (socket) => {
 
         io.emit("getonlineUsers", onlineUsers)
     })
-    socket.on("InchatUser", (userChat) => {
-        const user = onlineUsers.find((user1) => user1.userId === userChat.recipientId);
-        if (user) {
-            io.to(user.socketId).emit("getInChatUser", userChat)
-        }
-    })
+ 
     socket.on("sendMessage", (message) => {
         console.log(onlineUsers.find((user1) => user1.userId == message.recipientId))
         const user = onlineUsers.find((user1) => user1.userId === message.recipientId);
@@ -36,6 +31,17 @@ io.on("connection", (socket) => {
         }
 
     })
+
+socket.on("typing",(req)=>{
+    
+    const user = onlineUsers.find((user1) => user1.userId == req.recipientId);
+    console.log(user)
+    if(user){
+        io.to(user.socketId).emit("userTyping",{id:req.id,istype:req?.status})
+    }
+    
+
+})
 
     socket.on("disconnect", () => {
         onlineUsers = onlineUsers.filter(user => user.socketId !== socket.id);
