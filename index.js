@@ -49,7 +49,7 @@ socket.on("typing",(req)=>{
 
 socket.on("callUser", (data) => {
     const calluser = onlineUsers?.find((users) => users.userId === data.id);
-    console.log(calluser.socketId);
+ if(!calluser)return io.to(data.from).emit("callAccepted",false)
     if (calluser)
     console.log("send call")
       io.to(calluser.socketId).emit("getCall", {
