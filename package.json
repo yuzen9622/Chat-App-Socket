@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
+    "express": "^4.21.1",
     "gh-pages": "^6.1.1",
     "sockect": "file:",
     "socket.io": "^4.7.4"
